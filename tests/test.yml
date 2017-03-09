@@ -1,5 +1,5 @@
+# test.yml
 ---
-- hosts: localhost
-  remote_user: root
+- hosts: all
   roles:
-    - apache
+    - role_under_test
