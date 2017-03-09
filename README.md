@@ -12,7 +12,8 @@ Role Variables
 --------------
 
 See defaults/main.yml for the variables you can overwrite via role call as a parameter.
-apache_state: latest
+
+* apache_state: latest
 
 Dependencies
 ------------
@@ -23,13 +24,8 @@ Example Playbook
 ----------------
 
     - hosts: apache
-      vars_files:
-        - vars/main.yml
       roles:
         - { role: CSC-IT-Center-for-Science.apache }
 
-License
--------
 
-BSD, MIT
 
