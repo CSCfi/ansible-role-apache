@@ -1,5 +1,5 @@
 # dockerfile.debian
-FROM debian:strecth
+FROM debian:stretch
 # Install Ansible
 RUN apt-get update && apt-get install -y software-properties-common git ansible
 # Install Ansible inventory file
