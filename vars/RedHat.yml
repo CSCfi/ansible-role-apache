@@ -1,0 +1,20 @@
+---
+__apache_packages:
+  - httpd
+  - mod_ssl
+
+apache_service_name: httpd
+
+apache_ssl_hardening_items:
+    - file: "/etc/httpd/conf.d/ssl.conf"
+      option: "SSLCipherSuite"
+      value: "{{ apache_sslciphersuite }}"
+    - file: "/etc/httpd/conf.d/ssl.conf"
+      option: "SSLProtocol"
+      value: "{{ apache_sslprotocol }}"
+
+apache_ssl_hardening_items2:
+    - file: "/etc/httpd/conf/httpd.conf"
+      option: "TraceEnable"
+      value: "off"
+
