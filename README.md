@@ -1,4 +1,4 @@
-Anrible-Role: Apache
+Ansible-Role: Apache
 =========
 
 An role which install Apache on RedHat/Debian servers.
