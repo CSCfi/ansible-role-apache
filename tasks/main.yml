@@ -17,10 +17,10 @@
   with_items: "{{ apache_packages }}"
 
 - name: Apache | Enable | Apache
-  service: >
-    name={{ apache_service_name }}
-    state=started
-    enabled=yes
+  service:
+    name: "{{ apache_service_name }}"
+    state: started
+    enabled: yes
 
 - name: Apache | Enable | Modules | ssl, rewrite
   apache2_module: name={{ item }} state=present
