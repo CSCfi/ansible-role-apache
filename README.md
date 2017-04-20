@@ -27,7 +27,7 @@ Example Playbook
 
     - hosts: apache
       roles:
-        - { role: CSC-IT-Center-for-Science.apache }
+        - { role: CSCfi.apache }
 
 
 
