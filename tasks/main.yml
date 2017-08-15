@@ -34,7 +34,7 @@
   notify: restart apache
 
 - name: Apache | Harden | SSL
-  lineinfile: dest={{ item.file }} regexp="^#?\s*({{ item.option }}\s*)" backrefs=yes  line="\\1 {{ item.value }}"
+  lineinfile: dest={{ item.file }} regexp="^#?\s*({{ item.option }})" backrefs=yes  line="\\1 {{ item.value }}"
   with_items: "{{ apache_ssl_hardening_items }}"
   notify: restart apache 
 
