@@ -4,6 +4,7 @@ __apache_packages:
   - mod_ssl
 
 apache_service_name: httpd
+apache_sites: /etc/httpd/conf.d
 
 apache_ssl_hardening_items:
     - file: "/etc/httpd/conf.d/ssl.conf"
