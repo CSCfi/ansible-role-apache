@@ -4,6 +4,7 @@ __apache_packages:
   - apache2-utils
 
 apache_service_name: apache2
+apache_service_user: www-data
 apache_sites: /etc/apache2/sites-available
 
 apache_ssl_hardening_items:
