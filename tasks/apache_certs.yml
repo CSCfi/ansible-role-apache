@@ -1,0 +1,29 @@
+- name: Apache | Certificates | SSL | Insert | /etc/pki/tls/
+  copy:
+    content: "{{ apache_ssl_key }}"
+    dest: "/etc/pki/tls/private/{{ apache_fqdn }}.key"
+    group: "{{ apache_service_user }}"
+    owner: "{{ apache_service_user }}"
+    mode: 0440
+
+- copy:
+    content: "{{ apache_ssl_crt }}"
+    dest: "/etc/pki/tls/certs/{{ apache_fqdn }}.crt"
+    group: "{{ apache_service_user }}"
+    owner: "{{ apache_service_user }}"
+    mode: 0444
+
+- copy:
+    content: "{{ apache_ssl_ca }}"
+    dest: "/etc/pki/tls/certs/{{ apache_fqdn }}.ca"
+    group: "{{ apache_service_user }}"
+    owner: "{{ apache_service_user }}"
+    mode: 0444
+
+- name: Apache | Certificates | SSL | Configure
+  lineinfile: dest=/etc/httpd/conf.d/ssl.conf regexp="^#?\s*({{ item.key }}\s*)" backrefs=yes  line="\\1 {{ item.value }}"
+  with_items:
+    - { key: 'SSLCertificateFile', value: "/etc/pki/tls/certs/{{ apache_fqdn }}.crt" }
+    - { key: 'SSLCertificateKeyFile', value: "/etc/pki/tls/private/{{ apache_fqdn }}.key" }
+    - { key: 'SSLCertificateChainFile', value: "/etc/pki/tls/certs/{{ apache_fqdn }}.ca" }
+  notify: restart apache
