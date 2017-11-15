@@ -21,9 +21,12 @@
     mode: 0444
 
 - name: Apache | Certificates | SSL | Configure
-  lineinfile: dest=/etc/httpd/conf.d/ssl.conf regexp="^#?\s*({{ item.key }}\s*)" backrefs=yes  line="\\1 {{ item.value }}"
+  lineinfile: dest=/etc/httpd/conf.d/ssl.conf regexp="^#?\s*({{ apache_certs.key }}\s*)" backrefs=yes  line="\\1 {{ apache_certs.value }}"
   with_items:
     - { key: 'SSLCertificateFile', value: "/etc/pki/tls/certs/{{ apache_fqdn }}.crt" }
     - { key: 'SSLCertificateKeyFile', value: "/etc/pki/tls/private/{{ apache_fqdn }}.key" }
     - { key: 'SSLCertificateChainFile', value: "/etc/pki/tls/certs/{{ apache_fqdn }}.ca" }
   notify: restart apache
+  loop_control:
+    loop_var: apache_certs
+
