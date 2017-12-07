@@ -46,3 +46,4 @@
           (configurables is none)
           or
           (configurables | trim == '')
+          )
