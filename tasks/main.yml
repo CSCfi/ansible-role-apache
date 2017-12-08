@@ -38,6 +38,7 @@
   with_items: "{{ apache_ssl_hardening_items }}"
   notify: restart apache 
 
-- include: apache_{{ item }}.yml
+- name: {{ configurables }}
+  include: apache_{{ item }}.yml
   with_items: "{{ configurables }}"
   when: configurables != "none"
