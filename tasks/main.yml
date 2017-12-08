@@ -41,4 +41,4 @@
 - name: "{{ configurables }}"
   include: apache_{{ item }}.yml
   with_items: "{{ configurables }}"
-  when: configurables != "None"
+  when: configurables != "Non"
