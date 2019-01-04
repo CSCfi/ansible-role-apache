@@ -6,12 +6,14 @@ __apache_packages:
 apache_service_name: httpd
 apache_service_user: apache
 apache_sites: /etc/httpd/conf.d
+apache_crtdir: /etc/pki/tls
+apache_sslconf: "{{ apache_sites }}/ssl.conf"
 
 apache_ssl_hardening_items:
-    - file: "/etc/httpd/conf.d/ssl.conf"
+    - file: "{{ apache_sslconf }}"
       option: "SSLCipherSuite"
       value: "{{ apache_sslciphersuite }}"
-    - file: "/etc/httpd/conf.d/ssl.conf"
+    - file: "{{ apache_sslconf }}"
       option: "SSLProtocol"
       value: "{{ apache_sslprotocol }}"
 

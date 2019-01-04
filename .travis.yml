@@ -9,12 +9,12 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - container_id: $(mktemp)
     distribution: debian
-    version: 8
+    version: 9
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
-  - sudo apt-get update
+  - sudo apt-get update 
   # Pull container
   - sudo docker pull ${distribution}:${version}
   # Customize container
@@ -23,7 +23,6 @@ before_install:
 script:
   # Run container in detached state
   - sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${distribution}:ansible "${init}" > "${container_id}"
-
     # Syntax check
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check
     # Test role
