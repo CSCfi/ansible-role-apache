@@ -2,5 +2,5 @@
 ---
 - hosts: all
   roles:
-    - { role: CSCfi.apache, configurables: ['certs'] }
+    - {role: CSCfi.apache, configurables: ['certs']}
 
