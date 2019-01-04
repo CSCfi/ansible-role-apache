@@ -7,28 +7,6 @@
     - "default.yml"
   when: __apache_packages is not defined or apache_service_name is not defined
 
-- name: Apache | Create | Directory | /etc/pki/tls (redhat style)
-  file:
-    path: /etc/pki/tls
-    state: directory
-    mode: 0755
-  when: ansible_os_family == 'Debian'
-
-- name: Apache | Create | Symlink | certs
-  file:
-    src: "/etc/pki/tls/certs"
-    dest: "/etc/ssl/certs"
-    state: link
-  when: ansible_os_family == 'Debian'
-
-
-- name: Apache | Create | Symlink | private
-  file:
-    src: "/etc/pki/tls/private"
-    dest: "/etc/ssl/private"
-    state: link
-  when: ansible_os_family == 'Debian'
-
 - name: Apache | Define | Packages
   set_fact:
     apache_packages: "{{ __apache_packages | list }}"
