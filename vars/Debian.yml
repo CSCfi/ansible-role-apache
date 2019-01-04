@@ -6,7 +6,7 @@ __apache_packages:
 apache_service_name: apache2
 apache_service_user: www-data
 apache_sites: /etc/apache2/sites-available
-apache_crtdir: /etc/ssl
+apache_crtdir: "{{ crtdir | default('/etc/ssl') }}"
 apache_sslconf: "{{ apache_sites }}/default-ssl.conf"
 
 apache_ssl_hardening_items:
