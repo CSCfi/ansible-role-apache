@@ -3,5 +3,3 @@
 - hosts: all
   roles:
     - role_under_test
-      configurables: ['certs']
-
