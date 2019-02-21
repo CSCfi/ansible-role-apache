@@ -1,0 +1,17 @@
+- name: Apache | find | privatekeys
+  find:
+    paths: /etc/pki/tls/private
+    patterns: "{{ apache_fqdn }}*.key"
+  register: wildcard_files_to_delete
+
+- name: Apache | add | owner | privatekey
+  acl:
+    path: "{{ apache_item.path }}"
+    entity: "{{ apache_service_user }}"
+    etype: user
+    permissions: r
+    state: present
+  with_items: "{{ wildcard_files_to_delete.files }}"
+  loop_control:
+    loop_var: apache_item
+  notify: restart apache

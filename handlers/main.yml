@@ -4,3 +4,6 @@
   service:
     name: "{{ apache_service_name }}"
     state: restarted
+
+- name: reown privatekeys-apache
+  include_tasks: tasks/apache_certsownership.yml

@@ -2,22 +2,23 @@
   copy:
     content: "{{ apache_ssl_key }}"
     dest: "{{ apache_crtdir }}/private/{{ apache_fqdn }}.key"
-    group: "{{ apache_service_user }}"
-    owner: "{{ apache_service_user }}"
+    group: root
+    owner: root
     mode: 0440
+  notify: reown privatekeys-apache
 
 - copy:
     content: "{{ apache_ssl_crt }}"
     dest: "{{ apache_crtdir}}/certs/{{ apache_fqdn }}.crt"
-    group: "{{ apache_service_user }}"
-    owner: "{{ apache_service_user }}"
+    group: root
+    owner: root
     mode: 0444
 
 - copy:
-    content: "{{ apache_ssl_ca }}"
-    dest: "{{ apache_crtdir }}/certs/{{ apache_fqdn }}.ca"
-    group: "{{ apache_service_user }}"
-    owner: "{{ apache_service_user }}"
+    content: "{{ apache_ssl_cabundle }}"
+    dest: "{{ apache_crtdir }}/certs/{{ apache_fqdn }}.cabundle.crt"
+    group: root
+    owner: root
     mode: 0444
 
 - name: Apache | Certificates | SSL | Configure
@@ -25,7 +26,7 @@
   with_items:
     - { key: 'SSLCertificateFile', value: "{{ apache_crtdir }}/certs/{{ apache_fqdn }}.crt" }
     - { key: 'SSLCertificateKeyFile', value: "{{ apache_crtdir }}/private/{{ apache_fqdn }}.key" }
-    - { key: 'SSLCertificateChainFile', value: "{{ apache_crtdir}}/certs/{{ apache_fqdn }}.ca" }
+    - { key: 'SSLCertificateChainFile', value: "{{ apache_crtdir}}/certs/{{ apache_fqdn }}.cabundle.crt" }
   notify: restart apache
   loop_control:
     loop_var: apache_certs
