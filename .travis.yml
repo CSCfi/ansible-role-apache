@@ -22,11 +22,12 @@ before_install:
   # Customize container
   - sudo docker build --rm=true --file=tests/dockerfile.${distribution} --tag=${distribution}:ansible tests
 
-script:
+before_script:
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm pip install --upgrade pip
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm pip install ansible==${ansible_version}
   - sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible --version
 
+script:
   # Run container in detached state
   - sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${distribution}:ansible "${init}" > "${container_id}"
     # Syntax check
