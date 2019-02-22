@@ -7,11 +7,13 @@ env:
     version: 7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    ansible_version: 2.7.0.0
   - container_id: $(mktemp)
     distribution: debian
     version: 9
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    ansible_version: 2.7.0.0
 
 before_install:
   - sudo apt-get update 
@@ -19,6 +21,11 @@ before_install:
   - sudo docker pull ${distribution}:${version}
   # Customize container
   - sudo docker build --rm=true --file=tests/dockerfile.${distribution} --tag=${distribution}:ansible tests
+
+before_script:
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm pip install --upgrade pip'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm pip install ansible==${ansible_version}'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible --version'
 
 script:
   # Run container in detached state
