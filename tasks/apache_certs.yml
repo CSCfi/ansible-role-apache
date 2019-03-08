@@ -1,10 +1,12 @@
 - name: Apache | Initialize
-  include_vars: "{{ item }}"
+  include_vars: "{{ apache_certs }}"
   with_first_found:
     - "{{ ansible_os_family }}.yml"
     - "default.yml"
   when: update is defined
-
+  loop_control:
+    loop_var: apache_certs
+  
 - name: Apache | Certificates | SSL | Insert | {{ apache_crtdir }}
   copy:
     content: "{{ apache_ssl_key }}"
