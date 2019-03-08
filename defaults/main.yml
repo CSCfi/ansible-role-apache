@@ -6,7 +6,7 @@ apache_https_port: 443
 apache_state: latest 
 
 apache_sslciphersuite: "HIGH:!aNULL:!eNULL:!kECDH:!aDH:!RC4:!3DES:!CAMELLIA:!MD5:!PSK:!SRP:!KRB5:@STRENGTH"
-apache_sslprotocol: "ALL -SSLv2 -SSLv3"
+apache_sslprotocol: "ALL -SSLv2 -SSLv3 -TLSv1 -TLSv1.1"
 
 apache_ssl_key: "{{ vault_ssl_key | default('not_set_yet') }}"
 apache_ssl_crt: "{{ vault_ssl_crt | default('not_set_yet') }}"
