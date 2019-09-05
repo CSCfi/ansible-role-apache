@@ -21,4 +21,9 @@ apache_ssl_hardening_items2:
     - file: "/etc/httpd/conf/httpd.conf"
       option: "TraceEnable"
       value: "off"
-
+    - file: "/etc/httpd/conf/httpd.conf"
+      option: "ServerTokens"
+      value: "Prod"
+    - file: "/etc/httpd/conf/httpd.conf"
+      option: "ServerSignature"
+      value: "off"
