@@ -29,7 +29,7 @@ apache_ssl_hardening_items2:
       value: "off"
     - file: "/etc/apache2/apache2.conf"
       option: "Header always set Strict-Transport-Security"
-      value: "max-age=63072000; includeSubDomains; preload"
+      value: "\"max-age=63072000; includeSubDomains; preload\""
     - file: "/etc/apache2/apache2.conf"
       option: "Header always set X-Frame-Options"
       value: "DENY"
