@@ -34,11 +34,11 @@
   loop_control:
     loop_var: apache_item
 
-- name: Apache | BUGFIX | Comment out second include, otherwise already loaded errors
-  replace:
-    path: /etc/httpd/conf/httpd.conf
-    regexp: '(^IncludeOptional.*)'
-    replace: '#\1'
+#- name: Apache | BUGFIX | Comment out second include, otherwise already loaded errors
+#  replace:
+#    path: /etc/httpd/conf/httpd.conf
+#    regexp: '(^IncludeOptional.*)'
+#    replace: '#\1'
 
 - name: Apache | Harden 
   lineinfile: dest="{{ apache_item.file }}" regexp="^{{ apache_item.option }}" line="{{ apache_item.option }} {{ apache_item.value }}" state=present
