@@ -45,7 +45,7 @@
     - name: Apache | Comment | SSLCertificateChainFile
       replace:
         path: "{{ apache_sslconf }}"
-        regexp: '^SSLCertificateChainFile.*'
+        regexp: '^(SSLCertificateChainFile.*)'
         replace: '#\1'
 
   when: apache_ssl_key is search("BEGIN")
@@ -65,7 +65,7 @@
     - name: Apache | Comment | SSLCertificateFile
       replace:
         path: "{{ apache_sslconf }}"
-        regexp: '^SSLCACertificateFile.*'
+        regexp: '^(SSLCACertificateFile.*)'
         replace: '#\1'
   when: not apache_ssl_key is search("BEGIN")
 
