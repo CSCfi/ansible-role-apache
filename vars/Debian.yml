@@ -5,6 +5,7 @@ __apache_packages:
 
 apache_service_name: apache2
 apache_service_user: www-data
+apache_conf: /etc/apache2/apache2.conf
 apache_sites: /etc/apache2/sites-available
 apache_crtdir: "{{ crtdir | default('/etc/ssl') }}"
 apache_sslconf: "{{ apache_sites }}/default-ssl.conf"
@@ -16,35 +17,3 @@ apache_ssl_hardening_items:
     - file: "/etc/apache2/mods-enabled/ssl.conf"
       option: "SSLProtocol"
       value: "{{ apache_sslprotocol }}"
-
-apache_ssl_hardening_items2:
-    - file: "/etc/apache2/apache2.conf"
-      option: "TraceEnable"
-      value: "off"
-    - file: "/etc/apache2/apache2.conf"
-      option: "ServerTokens"
-      value: "Prod"
-    - file: "/etc/apache2/apache2.conf"
-      option: "ServerSignature"
-      value: "off"
-    - file: "/etc/apache2/apache2.conf"
-      option: "Header always set Strict-Transport-Security"
-      value: "\"max-age=63072000; includeSubDomains; preload\""
-    - file: "/etc/apache2/apache2.conf"
-      option: "Header always set X-Frame-Options"
-      value: "DENY"
-    - file: "/etc/apache2/apache2.conf"
-      option: "Header always set X-Content-Type-Options"
-      value: "nosniff"
-    - file: "/etc/apache2/apache2.conf"
-      option: "SSLCompression"
-      value: "off"
-    - file: "/etc/apache2/apache2.conf"
-      option: "SSLUseStapling"
-      value: "on"
-    - file: "/etc/apache2/apache2.conf"
-      option: "SSLStaplingCache"
-      value: "\"shmcb:logs/stapling-cache(150000)\""
-    - file: "/etc/apache2/apache2.conf"
-      option: "SSLSessionTickets"
-      value: "off"
