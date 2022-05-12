@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/CSCfi/ansible-role-apache.svg?branch=master)](https://travis-ci.org/CSCfi/ansible-role-apache)
+[![Build Status](https://app.travis-ci.com/CSCfi/ansible-role-apache.svg?branch=master)](https://app.travis-ci.com/github/CSCfi/ansible-role-apache)
 
 Ansible-Role: Apache
 =========
