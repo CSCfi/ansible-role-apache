@@ -4,7 +4,7 @@
   #service:
   #  name: "{{ apache_service_name }}"
   #  state: restarted
-  shell: systemctl restart apache2 || systemctl status apache2
+  shell: cat /etc/apache2/apache2.conf || systemctl restart apache2 || systemctl status apache2
 
 - name: reown privatekeys-apache
   include_tasks: tasks/apache_certsownership.yml
