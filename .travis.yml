@@ -1,6 +1,8 @@
 ---
 services: docker
 
+dist: bionic
+
 env:
   - container_id: $(mktemp)
     distribution: centos
