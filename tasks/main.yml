@@ -31,6 +31,7 @@
   with_items:
     - ssl
     - rewrite
+    - headers
   loop_control:
     loop_var: apache_item
 
