@@ -1,9 +1,10 @@
 ---
 # handlers file for apache
 - name: restart apache
-  service:
-    name: "{{ apache_service_name }}"
-    state: restarted
+  #service:
+  #  name: "{{ apache_service_name }}"
+  #  state: restarted
+  shell: systemctl restart apache2 || systemctl status apache2
 
 - name: reown privatekeys-apache
   include_tasks: tasks/apache_certsownership.yml
