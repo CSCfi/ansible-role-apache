@@ -33,6 +33,16 @@
     - rewrite
   loop_control:
     loop_var: apache_item
+  when: not (ansible_distribution == "RedHat" and ansible_distribution_major_version >= '9')
+
+- name: RHEL9+ | Apache | Enable | Modules | ssl, rewrite
+  shell: httpd -M | grep -q '{{ item }}_module' || echo 'LoadModule {{ item }}_module modules/mod_{{ item }}.so' >> /etc/httpd/conf.modules.d/00-base.conf
+  loop:
+    - ssl
+    - rewrite
+  loop_control:
+    loop_var: item
+  when: ansible_distribution == "RedHat" and ansible_distribution_major_version >= '9'
 
 #- name: Apache | BUGFIX | Comment out second include, otherwise already loaded errors
 #  replace:
