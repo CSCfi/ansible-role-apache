@@ -65,7 +65,7 @@
     loop_var: apache_item
 
 - name: "{{ configurables }}"
-  include: apache_{{ apache_item }}.yml
+  include_tasks: apache_{{ apache_item }}.yml
   with_items: "{{ configurables }}"
   when: configurables is defined and configurables!=""
   loop_control:
