@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/CSCfi/ansible-role-apache.svg?branch=master)](https://travis-ci.org/CSCfi/ansible-role-apache)
+[![Build Status](https://app.travis-ci.com/CSCfi/ansible-role-apache.svg?branch=master)](https://app.travis-ci.com/github/CSCfi/ansible-role-apache)
 
 Ansible-Role: Apache
 =========
@@ -15,8 +15,6 @@ Role Variables
 
 See defaults/main.yml for the variables you can overwrite via role call as a parameter.
 
-* apache_state: latest
-
 Dependencies
 ------------
 
@@ -28,6 +26,3 @@ Example Playbook
     - hosts: apache
       roles:
         - { role: CSCfi.apache }
-
-
-
